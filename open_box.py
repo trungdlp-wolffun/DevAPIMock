@@ -7,7 +7,8 @@ def response(flow: http.HTTPFlow) -> None:
     if flow.request.pretty_url.endswith("/rivals-box/view-box"):
         data = json.loads(flow.response.get_text())
 
-        if (len(data["data"]) >= 2):
-            data["data"][1]["data"]["type"] = 12000031
+        if (len(data["data"]) >= 1):
+            data["data"][0]["data"]["kind"] = 5
+            data["data"][0]["data"]["type"] = 500
 
         flow.response.text = json.dumps(data)
